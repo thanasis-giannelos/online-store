@@ -1,5 +1,3 @@
-import logo from './logo.svg';
-import './App.css';
 import Shelf from "./components/Shelf";
 import React, { Fragment, useEffect, useState } from 'react';
 import Header from './components/Header';
