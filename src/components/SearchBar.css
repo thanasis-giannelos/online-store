@@ -6,7 +6,7 @@ header form {
   width: fit-content;
   margin: 0 auto;
   position: absolute;
-  top: 50%;
+  top: 27%;
   left: 50%;
   transform: translateX(-50%);
 }
