@@ -7,7 +7,7 @@ header {
   height: 20rem;
 
   background-color: rgba(1,12,30,255);
-  background-image: url("/home/sakis/Desktop/onlineorinstore.png");
+  background-image: url("/home/sakis/Desktop/React/online-store-app/src/assets");
   background-size: 100%;
   background-repeat:no-repeat;
 }
