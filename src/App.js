@@ -1,8 +1,7 @@
-import Shelf from "./components/Shelf";
 import React, { Fragment, useEffect, useState } from 'react';
-import Header from './components/Header';
-import Footer from './components/Footer';
 import { products, productCategories } from "./assets/data";
+import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
+
 
 function App() {
 
@@ -47,7 +46,6 @@ function App() {
     return categoryShelves;  
   };
 
-
   return (
     <Fragment>
       <Header/>
@@ -58,5 +56,88 @@ function App() {
     </Fragment>
   );
 }
+
+
+const Header = () => {
+  return (
+    <header>
+      <form >
+        <input type="text" placeholder="search..." name="search"/>
+        <button type="submit">Search</button>
+      </form>
+    </header>
+  );
+};
+
+const Footer = () => {
+  return (
+    <footer>
+      <div className="content-box">
+        <h3>Help & Information</h3>
+        <ul>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Track your order</a></li>
+        <li><a href="#">Return policy</a></li>
+        <li><a href="#">Delivey</a></li>
+        </ul>
+      </div>
+      <div className="content-box">
+        <h3>About Store</h3>
+        <ul>
+        <li><a href="#">About us</a></li>
+        <li><a href="#">Philosophy</a></li>
+        <li><a href="#">Careers at Store</a></li>
+        </ul>
+      </div>
+      <div className="content-box">
+        <h3>Become a Member</h3>
+        <ul>
+        <li><a href="#">Sign In</a></li>
+        <li><a href="#">Sign Up</a></li>
+        <li><a href="#">Newsletter</a></li>
+        <li><a href="#">Leave Feedback</a></li>
+        </ul>
+      </div>
+      <div className="content-box social-media">
+        <h3>Follow us</h3>
+        <ul>
+        <li><a href="#"><FaFacebook/></a></li>
+        <li><a href="#"><FaInstagram/></a></li>
+        <li><a href="#"><FaTwitter/></a></li>
+        </ul>
+      </div>
+    </footer>
+  );
+};
+
+const ProductCard = (props) => {
+  return (
+    <div className="product-card">
+      <div className="image-container">
+        <img src={props.item["image"]}/>
+      </div>
+      <p>{props.item["category"].toUpperCase()}</p>
+      <div className="title-container">
+        <h5>{props.item["title"]}</h5>
+      </div>
+      <p>{props.item["rating"]["rate"]}/5 ({props.item["rating"]["count"]})</p>
+      <h3>{props.item["price"]} $</h3>
+    </div>
+  );
+};
+
+const Shelf = (props) => {
+  return (
+    <div className="shelf">
+      <div className="shelf-title">
+        <h2>{props.category.toUpperCase()}</h2>
+      </div>
+      <div className="shelf-products">
+        {props.data.map(product => <ProductCard item={product}/>)}
+      </div>
+    </div>
+  );
+};
+
 
 export default App;
