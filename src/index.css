@@ -1,3 +1,9 @@
+  /* GLOBAL */
+html {
+  font-size: 16px;
+  height: 100%;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -5,33 +11,56 @@
 }
 
 body {
+  background-color: #e8e8e8;
+  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100%;
+
+  display: flex; /* in order to stick footer to bottom*/
+  flex-direction: column;
+}
+
+.container {
   width: 70%;
   margin: 0 auto;
-  background-color: #e8e8e8;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  overflow: hidden;
+  scroll-behavior: auto;
 }
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* HEADER */
 
 header {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 20rem;
-  background-color: rgba(1,12,30,255);
-  background-image: url(/home/sakis/Desktop/React/online-store-app/src/assets/onlineorinstore.png);
-  background-size: cover;
-  background-position: center 10%;
-  background-repeat:no-repeat;
+  background-color: black;
+  color: #e8e8e8;
+  position: sticky;
+  top: 0;
 }
 
-header form {
-  width: fit-content;
-  margin: 0 auto;
-  position: absolute;
-  top: 27%;
-  left: 50%;
-  transform: translateX(-50%);
+header .container{
+  min-height: 4rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.branding h1 {
+  font-size: 3rem;
+}
+
+.user-menu li {
+  list-style: none;
+  display: inline-block;
+  margin: auto 0.5rem;
+}
+
+.user-menu a{
+  font-size: 1.5rem;
+  color: #e8e8e8;
 }
 
 header form input {
@@ -43,40 +72,38 @@ header form input {
 }
 
 header form button {
-  background-color: white;
+  background-color: #e8e8e8;
   height: 2rem;
   border-top-right-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
   border: 1px solid #e8e8e8;
-  padding: 3px;
+  padding: 3px 6px 3px 6px;
   cursor: pointer;
 }
 
 header form input:focus {
   outline: none;
 }
+
 header form input::placeholder {
   color: rgb(129, 129, 129);
 }
 
-  /* PRODUCT CARD */
+/* PRODUCT CARD */
 
 .product-card {
   background-color: white;
   border-radius: 0.5rem;
   width: 12rem;
   height: 20rem;
-
-  margin-left: 0;
+  margin: 0 0.75rem 0.75rem 0;
   padding: 0.5rem;
-
   display: flex;
+  flex: 0 0 auto;
   flex-direction: column;
   justify-content: space-between;
-
   cursor: pointer;
 }
-
 
 .image-container {
   width:100%;
@@ -89,14 +116,14 @@ header form input::placeholder {
   object-fit: contain; 
 }
 
+.product-card p {
+  font-size: 0.75rem;
+  color: rgb(77, 77, 77);
+}
+
 .title-container {
   height: 10%;
   overflow: hidden;
-}
-
-p {
-  font-size: 0.75rem;
-  color: rgb(77, 77, 77);
 }
 
 .product-card h3 {
@@ -106,41 +133,33 @@ p {
 .product-card:hover {
   box-shadow: 7px 7px 5px rgba(0, 0, 0, 0.199);
 }
+  
+/* SHELF */
 
-  /* SHELF */
-
-.shelf{
-  width: fit-content;
-
-  margin: 3rem 0 0 0;
-
-
-  display: flex;
-  flex-direction: column;
-
+#shelf {
+  margin-top: 2rem;
+  overflow-x: scroll;
 }
 
-.shelf-title{
-  padding: 0.5rem 0;
+#shelf h2 {
+  font-size: 1rem;
 }
-
 
 .shelf-products {
   display: flex;
 }
 
-.shelf-products > * {
-  margin: 0.5rem 0.75rem 0.5rem 0;
-}
-
-  /* FOOTER */
+/* FOOTER */
 
 footer {
-  background-color: rgba(187, 187, 187, 0.822);
-  margin-top: 3rem;
-  width: 100%;
-  height: 14rem;
+  background-color: black;
+  color: #e8e8e8;
+  margin-top: auto;
+}
 
+footer .container{
+  margin-top: 1rem;
+  min-height: 12rem;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -150,6 +169,10 @@ footer {
   width: 25%;
   height: 100%;
   padding: 1rem 0 0 1rem;
+}
+
+.content-box h3 {
+  font-weight: bold;
 }
 
 .content-box li{
@@ -163,7 +186,52 @@ footer {
   font-size: 2rem;
 }
 
-footer a{
+/*PRODUCT DESCRIPTION*/
+
+/* #product-description *{
+  border: 1px solid black;
+} */
+
+#product-description .container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  /* margin-top: 5rem; */
+  height: 30rem;
+  align-items: center;
+}
+
+#product-description .image-wrapper{
+  width: 30rem;
+  height: 20rem;
+}
+
+.image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit:contain;
+}
+
+#product-description .right-split {
+  width: 50rem;
+  height: 20rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#product-description .right-split button {
+  border: none;
+  padding: 0.5rem;
+  font-size: 1.25rem;
+  width: 8rem;
+  background-color: black;
+  color: #e8e8e8;
+  cursor: pointer;
+}
+
+#product-description .right-split button:active {
+  background-color: #e8e8e8;
   color: black;
-  text-decoration: none;
+  border: 1px solid black;
 }
