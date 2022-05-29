@@ -1,7 +1,7 @@
 import { FaSearch, FaShoppingCart, FaRegUser } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-export const Header = () => {
+export const Header = (props) => {
   return (
     <header>
       <div className='container' >
@@ -16,7 +16,7 @@ export const Header = () => {
         </nav>
         <div className='user-menu'>
           <ul>
-            <li><a href='#'><FaShoppingCart/></a></li>
+            <li><Link to={"/cart"}><FaShoppingCart/><span>{props.cartItemsCounter}</span></Link></li>
             <li><a href='#'><FaRegUser/></a></li>
           </ul>
         </div>

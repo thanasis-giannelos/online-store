@@ -1,38 +1,37 @@
 import React, { Fragment, useEffect, useState } from 'react';
-import { products, productCategories } from "../assets/data";
 import { Shelf } from "../components/Shelf";
 
 
 export const Home = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [storedProducts, setStoredProducts] = useState(products);
-  const [categories, setCategories] = useState(productCategories);
+  const [storedProducts, setStoredProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
   
-  // useEffect(() => {
-  //   fetch("https://fakestoreapi.com/products")
-  //     .then(res => res.json())
-  //     .then(
-  //       (result) => {
-  //         setLoading(false);
-  //         setStoredProducts(result);
-  //       },
-  //       (error) => {
-  //         setLoading(false);
-  //         setError(error);
-  //       }
-  //     )
-  //     .then(result => {
-  //       return fetch("https://fakestoreapi.com/products/categories");
-  //     })
-  //     .then(res => res.json())
-  //     .then(
-  //       (result) => {
-  //         setCategories(result);
-  //       },
-  //       (error) => {setError(error)}
-  //     );
-  // }, []);
+  useEffect(() => {
+    fetch("https://fakestoreapi.com/products")
+      .then(res => res.json())
+      .then(
+        (result) => {
+          setLoading(false);
+          setStoredProducts(result);
+        },
+        (error) => {
+          setLoading(false);
+          setError(error);
+        }
+      )
+      .then(result => {
+        return fetch("https://fakestoreapi.com/products/categories");
+      })
+      .then(res => res.json())
+      .then(
+        (result) => {
+          setCategories(result);
+        },
+        (error) => {setError(error)}
+      );
+  }, []);
   
   const displayFromEveryCategory = () => {
     const categoryShelves = [];
@@ -47,9 +46,8 @@ export const Home = () => {
   
   return (
     <Fragment>
-      {/* <ProductSpotlight/> */}
-      {/* {loading && <div>Loading...</div>}
-      {error && <div>Error: {error.message}</div>} */}
+      {loading && <div>Loading...</div>}
+      {error && <div>Error: {error.message}</div>}
       {displayFromEveryCategory()}
     </Fragment>
   );  

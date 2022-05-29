@@ -2,9 +2,13 @@ import React, { useState, useEffect } from "react";
 import { FaStar } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 
-export const ProductDescription = () => {
+export const ProductDescription = (props) => {
   const [data, setData] = useState(null);
   let { productId } = useParams();
+
+  const clickHandler = () => {
+    props.liftState(data);
+  };
 
   useEffect(() => {
     fetch(`https://fakestoreapi.com/products/${productId}`)
@@ -25,7 +29,7 @@ export const ProductDescription = () => {
             <h2>{data["price"]} $</h2>
             <p>{data["description"]}</p>
             <h4>{data["category"]}</h4>
-            <button>Add to cart</button>
+            <button onClick={clickHandler}>Add to cart</button>
           </div>
         </div>
       </section>
