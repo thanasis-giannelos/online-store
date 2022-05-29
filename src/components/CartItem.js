@@ -1,5 +1,4 @@
 import React from 'react'
-import anImg from "/home/sakis/Desktop/React/online-store-app/src/assets/61mtL65D4cL._AC_SX679_.jpg";
 
 export const CartItem = (props) => {
   const clickHandler = () => {
