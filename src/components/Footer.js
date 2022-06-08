@@ -2,9 +2,9 @@ import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
 
 export const Footer = () => {
   return (
-    <footer>
-      <div className='container'>
-        <div className="content-box">
+    <footer className="color">
+      <div className="container">
+        <div className="content-box" id="1">
           <h3>Help & Information</h3>
           <ul>
           <li><a href="#">FAQ</a></li>
@@ -13,7 +13,7 @@ export const Footer = () => {
           <li><a href="#">Delivery</a></li>
           </ul>
         </div>
-        <div className="content-box">
+        <div className="content-box" id="2">
           <h3>About Store</h3>
           <ul>
           <li><a href="#">About us</a></li>
@@ -21,7 +21,7 @@ export const Footer = () => {
           <li><a href="#">Careers at Store</a></li>
           </ul>
         </div>
-        <div className="content-box">
+        <div className="content-box" id="3">
           <h3>Become a Member</h3>
           <ul>
           <li><a href="#">Sign In</a></li>
@@ -31,7 +31,6 @@ export const Footer = () => {
           </ul>
         </div>
         <div className="content-box social-media">
-          <h3>Follow us</h3>
           <ul>
           <li><a href="#"><FaFacebook/></a></li>
           <li><a href="#"><FaInstagram/></a></li>

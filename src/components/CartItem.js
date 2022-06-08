@@ -2,17 +2,18 @@ import React from 'react'
 
 export const CartItem = (props) => {
   const clickHandler = () => {
-    props.liftState(props.data["id"]);
+    props.liftState(props.title);
   };
 
   return (
-    <div className='cart-item'>
+    <div id='cart-item'>
       <div className="image-container">
-        <img src={props.data["image"]}/>
+        <img src={props.image}/>
       </div>
-      <h2>{props.data["price"]} $</h2>
-      <p>{props.data["title"]}</p>
-      <button onClick={clickHandler}>Remove from Cart</button>
+      <h2>{props.title}</h2>
+      <h3>{props.price} $</h3>
+      <h3>Quantity: {props.quantity}</h3>
+      <button className='color' onClick={clickHandler}>Remove from Cart</button>
     </div>
   );
 };
