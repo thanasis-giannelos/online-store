@@ -9,7 +9,6 @@ export const Cart = props => {
 
   let totalPrice = 0;
   let arrayToRender = [];
-  console.log(props.data["Mens Casual Premium Slim Fit T-Shirts "]);
   for (const cartItem in props.data) {
     arrayToRender.push(<CartItem title={cartItem} price={props.data[cartItem][1]} quantity={props.data[cartItem][0]} image={props.data[cartItem][2]} liftState={getState}/>);
     totalPrice += props.data[cartItem][1] * props.data[cartItem][0];
