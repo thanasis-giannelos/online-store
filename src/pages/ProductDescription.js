@@ -12,12 +12,15 @@ export const ProductDescription = (props) => {
   };
 
   useEffect(() => {
-    fetch(`https://fakestoreapi.com/products/${productId}`)
-    .then(res => res.json())
-    .then(result => setData(result));
+    const fetchData = async () => {
+      let product = await fetch(`https://fakestoreapi.com/products/${productId}`);
+      product = await product.json();
+      setData(product);
+    };
+    fetchData();
   }, []);
   
-  if (data !== null) {
+  if (data) {
     return (
         <div className='container' id="productDescription">
           <div id="image-wrapper">

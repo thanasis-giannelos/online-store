@@ -13,12 +13,19 @@ export const App = () => {
   const [cartItems, changeCartItems] = useState([]);
 
   useEffect(() => {
-    fetch("https://fakestoreapi.com/products")
-      .then(res => res.json())
-      .then(result => setFetchedProducts(...fetchedProducts, result))
-      .then(result => fetch("https://fakestoreapi.com/products/categories"))
-      .then(res => res.json())
-      .then(result => setFetchedCategories(...fetchedCategories, result))
+    const fetchData = async () => {
+      try {
+        let products = await fetch("https://fakestoreapi.com/products");
+        let productCategories = await fetch("https://fakestoreapi.com/products/categories");
+        products = await products.json();
+        productCategories = await productCategories.json();
+        setFetchedProducts(...fetchedProducts, products);
+        setFetchedCategories(...fetchedProducts, productCategories);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchData();
   }, []);
 
   let itemsAndQuantities = {};
