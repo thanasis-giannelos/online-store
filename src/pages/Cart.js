@@ -1,6 +1,4 @@
-import React, { useState } from 'react'
 import { CartItem } from '../components/CartItem';
-import { Link } from "react-router-dom";
 
 export const Cart = props => {
   const getState = itemTitle => {

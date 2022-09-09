@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { ProductCard } from "./ProductCard";
 
 
@@ -6,8 +7,17 @@ export const Shelf = (props) => {
     <div className="container">
       <h3>{props.category.toUpperCase()}</h3>
       <div className="shelf-products">
-        {props.data.map(product => <ProductCard item={product}/>)}
+        {props.data.map(product => {
+          return (
+            <Link to={"/product_description/" + product.id}>
+              <ProductCard item={product}/>
+            </Link>
+          );
+        })}
       </div>
     </div>
   );
 };
+
+
+

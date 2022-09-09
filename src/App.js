@@ -58,9 +58,9 @@ export const App = () => {
     <BrowserRouter>
       <Header cartItemsCounter={cartItems.length}/>
           <Routes>
-            <Route path='/' element={<Home products={fetchedProducts} categories={fetchedCategories}/>}/>
+            <Route path='/'                               element={<Home products={fetchedProducts} categories={fetchedCategories}/>}/>
             <Route path='/product_description/:productId' element={<ProductDescription liftState={addCartItem}/>}/>
-            <Route path='/cart' element={<Cart data={itemsAndQuantities} liftState={removeCartItem}/>}/>
+            <Route path='/cart'                           element={<Cart data={itemsAndQuantities} liftState={removeCartItem}/>}/>
           </Routes>
       <Footer/>
     </BrowserRouter>
