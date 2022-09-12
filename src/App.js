@@ -8,19 +8,18 @@ import { useState, useEffect } from 'react';
 
 
 export const App = () => {
-  const [fetchedProducts, setFetchedProducts] = useState([]);
-  const [fetchedCategories, setFetchedCategories] = useState([]);
+  const [state, setState] = useState({products: [], categories: []});
   const [cartItems, changeCartItems] = useState([]);
+
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        let products = await fetch("https://fakestoreapi.com/products");
-        let productCategories = await fetch("https://fakestoreapi.com/products/categories");
-        products = await products.json();
-        productCategories = await productCategories.json();
-        setFetchedProducts(...fetchedProducts, products);
-        setFetchedCategories(...fetchedProducts, productCategories);
+        let fetchedProducts = await fetch("https://fakestoreapi.com/products");
+        let fetchedCategories = await fetch("https://fakestoreapi.com/products/categories");
+        fetchedProducts = await fetchedProducts.json();
+        fetchedCategories = await fetchedCategories.json();
+        setState({products: [...fetchedProducts], categories: [...fetchedCategories]});
       } catch (error) {
         console.log(error);
       }
@@ -28,39 +27,31 @@ export const App = () => {
     fetchData();
   }, []);
 
-  let itemsAndQuantities = {};
-  cartItems.forEach(item => {
-    if (item.title in itemsAndQuantities) {
-      itemsAndQuantities[item.title][0] += 1;
-    } else {
-      itemsAndQuantities[item.title] = [];
-      itemsAndQuantities[item.title][0] = 1;
-      itemsAndQuantities[item.title][1] = item.price;
-      itemsAndQuantities[item.title][2] = item.image;
+  let mapObj = {};
+  for (const item of cartItems) {
+    if (!mapObj.hasOwnProperty(item.title)) {
+      mapObj[item.title] = {count: 1, price: item.price, imgURL: item.image};
+      continue;
     }
-  });
+    mapObj[item.title].count += 1;
+  }
 
   const addCartItem = item => changeCartItems([...cartItems, item]);
 
   const removeCartItem = itemTitle => {
-    let tempArray = [...cartItems];
-    for (let i = 0; i < tempArray.length; i++) {
-      if (tempArray[i].title === itemTitle) {
-        tempArray.splice(i, 1);
-        changeCartItems(tempArray);
-        tempArray = null;
-        break;
-      }
-    }
+    changeCartItems(prevCartItems => {
+      let index = prevCartItems.findIndex(item => item.title === itemTitle);
+      return [...prevCartItems.slice(0, index), ...prevCartItems.slice(index+1)];
+    });
   };
 
   return (
     <BrowserRouter>
       <Header cartItemsCounter={cartItems.length}/>
           <Routes>
-            <Route path='/'                               element={<Home products={fetchedProducts} categories={fetchedCategories}/>}/>
+            <Route path='/'                               element={<Home products={state.products} categories={state.categories}/>}/>
             <Route path='/product_description/:productId' element={<ProductDescription liftState={addCartItem}/>}/>
-            <Route path='/cart'                           element={<Cart data={itemsAndQuantities} liftState={removeCartItem}/>}/>
+            <Route path='/cart'                           element={<Cart mapObj={mapObj} liftState={removeCartItem}/>}/>
           </Routes>
       <Footer/>
     </BrowserRouter>
